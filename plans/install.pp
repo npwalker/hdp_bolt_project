@@ -6,7 +6,7 @@
 # summary and parameters from the plan.
 # @summary A plan created with bolt plan new.
 # @param targets The targets to run on.
-plan hdp::install (
+plan hdp_bolt_project::install (
   TargetSpec $targets = "localhost",
   String     $puppet_primary_hostname,
   String     $hdp_dns_name = $facts['fqdn']
