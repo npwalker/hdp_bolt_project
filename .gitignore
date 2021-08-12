@@ -1,0 +1,4 @@
+.modules
+.resource_types
+.plan_cache.json
+bolt-debug.log
