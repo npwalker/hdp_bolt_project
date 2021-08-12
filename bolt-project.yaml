@@ -1,5 +1,5 @@
 ---
-name: hdp
+name: hdp_bolt_project
 modules: 
   - git: https://github.com/npwalker/puppetlabs-hdp
     ref: 'main'
