@@ -1,0 +1,6 @@
+# hiera.yaml
+version: 5
+
+hierarchy:
+  - name: "HDP data"
+    path: "hdp.yaml"

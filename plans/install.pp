@@ -9,7 +9,7 @@
 plan hdp_bolt_project::install (
   TargetSpec $targets = "localhost",
   String     $puppet_primary_hostname,
-  Optional[String]     $hdp_dns_name = undef,
+  Optional[String] $hdp_dns_name = lookup('hdp_dns_name'),
 ) {
   apply_prep($targets)
   out::message("Installing docker now")
