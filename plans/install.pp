@@ -9,23 +9,22 @@
 plan hdp_bolt_project::install (
   TargetSpec $targets = "localhost",
   String     $puppet_primary_hostname,
-  String     $hdp_dns_name = $facts['fqdn']
+  Optional[String]     $hdp_dns_name = undef,
 ) {
-  apply_prep()
+  apply_prep($targets)
   out::message("Installing docker now")
-  apply( 
-    include 'docker'
-  )
+  apply($targets){
+    include docker
+  }
   out::message("Docker install finished")
   out::message("Installing HDP now")
-  apply(
+  apply($targets){
     class { 'hdp::app_stack':
         ca_server        => "https://${puppet_primary_hostname}:8140",
-        dns_name         => $hdp_dns_name,
+        dns_name         => pick($hdp_dns_name, $facts['fqdn']),
         image_repository => 'gcr.io/hdp-gcp-316600',
         hdp_version      => 'latest',
     }
-  )
+  }
   out::message("HDP install finished")
-  return $command_result
 }
